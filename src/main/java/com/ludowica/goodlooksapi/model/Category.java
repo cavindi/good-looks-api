@@ -6,15 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Product {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String image;
-    private double price;
-    private String category;
+    private String keyword;
 
     public int getId() {
         return id;
@@ -32,27 +30,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
