@@ -13,6 +13,7 @@ public class Category {
     private int id;
     private String name;
     private String keyword;
+    private String image;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class Category {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+	
+	public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

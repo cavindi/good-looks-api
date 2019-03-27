@@ -1,17 +1,27 @@
 package com.ludowica.goodlooksapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int productId;
-    private String productName;
+    private int userId;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("cart")
+    private Set<CartProduct> cartProduct;
+
+    public Cart() {
+    }
+
+    public Cart(int userId) {
+        this.userId = userId;
+    }
 
     public int getId() {
         return id;
@@ -21,19 +31,19 @@ public class Cart {
         this.id = id;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getProductName() {
-        return productName;
+    public Set<CartProduct> getCartProduct() {
+        return cartProduct;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setCartProduct(Set<CartProduct> cartProduct) {
+        this.cartProduct = cartProduct;
     }
 }
