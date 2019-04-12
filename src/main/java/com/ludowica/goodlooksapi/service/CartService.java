@@ -72,4 +72,15 @@ public class CartService {
 
         cartProductRepo.save(cartProduct);
     }
+
+    public ResponseEntity<?> deleteCartProduct(CartForm cartForm) {
+
+        this.cartProduct = cartProductRepo
+                .findByProductIdAndAndCartId(cartForm.getProductId(), cartForm.getCartId())
+                .orElseThrow(() -> new ResourceNotFoundException("Cart Product not found for this id :: " + cartForm.getCartId()));
+
+        cartProductRepo.deleteById(this.cartProduct.getId());
+
+        return new ResponseEntity<>(this.cartProduct, HttpStatus.OK);
+    }
 }
