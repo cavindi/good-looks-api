@@ -2,11 +2,10 @@ package com.ludowica.goodlooksapi.controller;
 
 import com.ludowica.goodlooksapi.form.CartForm;
 import com.ludowica.goodlooksapi.model.Cart;
-import com.ludowica.goodlooksapi.model.CartProduct;
-import com.ludowica.goodlooksapi.repository.CartProductRepo;
 import com.ludowica.goodlooksapi.repository.CartRepo;
 import com.ludowica.goodlooksapi.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +33,20 @@ public class CartController {
         return cartRepo.findById(id);
     }
 
-    @PostMapping("/create")
-    public Cart createCart(@RequestBody int userId) {
-        return cartRepo.save(new Cart(userId));
+    @PostMapping("/fetch")
+    public ResponseEntity<?> fetchCart(int userId) {
+
+        Optional<Cart> shoppingCartOptional = cartRepo.findByUserId(userId);
+        Cart shoppingCart = null;
+
+        if (shoppingCartOptional.isPresent()) {
+            shoppingCart = shoppingCartOptional.get();
+        } else {
+            shoppingCart = new Cart(userId);
+            cartRepo.save(shoppingCart);
+        }
+
+        return new ResponseEntity<>(shoppingCart, HttpStatus.OK);
     }
 
     @PostMapping

@@ -13,11 +13,20 @@ public class User {
     private int userId;
     private String username;
     private String password;
-    private String fName;
-    private String lName;
+    private String name;
     private String gender;
-    private String city;
-    private String country;
+    private String address;
+
+    public User() {
+    }
+
+    public User(String username, String password, String name, String gender, String address) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.gender = gender;
+        this.address = address;
+    }
 
     public int getUserId() {
         return userId;
@@ -43,6 +52,14 @@ public class User {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -51,35 +68,11 @@ public class User {
         this.gender = gender;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getfName() {
-        return fName;
-    }
-
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public String getlName() {
-        return lName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
