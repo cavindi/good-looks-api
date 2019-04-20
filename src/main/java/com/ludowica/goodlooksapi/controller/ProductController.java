@@ -29,7 +29,7 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product) {
         return productRepo.save(product);
     }
-    
+
     @PutMapping
     public Product updateProduct(@RequestBody Product product) {
         return productRepo.save(product);

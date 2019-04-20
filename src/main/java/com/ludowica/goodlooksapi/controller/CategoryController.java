@@ -21,11 +21,12 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> getAllCategory(){
+    public List<Category> getAllCategory() {
         return categoryRepo.findAll();
     }
+
     @PostMapping
-    public Category addCategoryProduct(@RequestBody Category category){
+    public Category addCategoryProduct(@RequestBody Category category) {
         return categoryRepo.save(category);
     }
 }

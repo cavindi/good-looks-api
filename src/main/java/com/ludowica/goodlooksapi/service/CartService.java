@@ -1,13 +1,11 @@
 package com.ludowica.goodlooksapi.service;
 
-import com.ludowica.goodlooksapi.exception.ResourceException;
 import com.ludowica.goodlooksapi.form.CartForm;
 import com.ludowica.goodlooksapi.model.Cart;
 import com.ludowica.goodlooksapi.model.CartProduct;
 import com.ludowica.goodlooksapi.model.Product;
 import com.ludowica.goodlooksapi.repository.CartProductRepo;
 import com.ludowica.goodlooksapi.repository.CartRepo;
-import com.ludowica.goodlooksapi.repository.CategoryRepo;
 import com.ludowica.goodlooksapi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;

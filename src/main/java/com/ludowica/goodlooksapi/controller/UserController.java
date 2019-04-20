@@ -16,17 +16,31 @@ public class UserController {
     UserRepo userRepo;
 
     @GetMapping
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepo.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUser(@PathVariable int id){
+    public Optional<User> getUser(@PathVariable int id) {
         return userRepo.findById(id);
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         return userRepo.save(user);
+    }
+
+    @PutMapping
+    public User updateUser(@RequestBody User user) {
+        return userRepo.save(user);
+    }
+
+    @DeleteMapping
+    public boolean removeUser(@PathVariable int id) {
+        if (userRepo.existsById(id)) {
+            userRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
