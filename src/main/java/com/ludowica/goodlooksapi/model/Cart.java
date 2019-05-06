@@ -14,7 +14,7 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("cart")
-    private Set<CartProduct> cartProduct;
+    private Set<CartProduct> cartProducts;
 
     public Cart() {
     }

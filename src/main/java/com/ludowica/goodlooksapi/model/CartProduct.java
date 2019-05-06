@@ -13,7 +13,7 @@ public class CartProduct {
 
     @ManyToOne
     @JoinColumn
-    @JsonIgnoreProperties("cartProduct")
+    @JsonIgnoreProperties("cartProducts")
     private Cart cart;
 
     @ManyToOne
