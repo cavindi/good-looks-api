@@ -39,11 +39,11 @@ public class Cart {
         this.userId = userId;
     }
 
-    public Set<CartProduct> getCartProduct() {
-        return cartProduct;
+    public Set<CartProduct> getCartProducts() {
+        return cartProducts;
     }
 
-    public void setCartProduct(Set<CartProduct> cartProduct) {
-        this.cartProduct = cartProduct;
+    public void setCartProducts(Set<CartProduct> cartProducts) {
+        this.cartProducts = cartProducts;
     }
 }
