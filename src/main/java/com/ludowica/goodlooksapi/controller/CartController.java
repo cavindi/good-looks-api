@@ -33,8 +33,8 @@ public class CartController {
         return cartRepo.findById(id);
     }
 
-    @PostMapping("/fetch")
-    public ResponseEntity<?> fetchCart(int userId) {
+    @GetMapping("/fetch/{userId}")
+    public ResponseEntity<?> fetchCart(@PathVariable int userId) {
 
         Optional<Cart> shoppingCartOptional = cartRepo.findByUserId(userId);
         Cart shoppingCart = null;
@@ -43,7 +43,7 @@ public class CartController {
             shoppingCart = shoppingCartOptional.get();
         } else {
             shoppingCart = new Cart(userId);
-            cartRepo.save(shoppingCart);
+            shoppingCart = cartRepo.save(shoppingCart);
         }
 
         return new ResponseEntity<>(shoppingCart, HttpStatus.OK);
