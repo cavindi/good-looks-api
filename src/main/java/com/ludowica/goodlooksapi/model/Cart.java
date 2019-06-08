@@ -11,16 +11,18 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int userId;
+    private String status;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("cart")
     private Set<CartProduct> cartProducts;
 
-    public Cart() {
+    public String getStatus() {
+        return status;
     }
 
-    public Cart(int userId) {
-        this.userId = userId;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getId() {

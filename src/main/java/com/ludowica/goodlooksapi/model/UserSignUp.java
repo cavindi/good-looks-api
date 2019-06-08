@@ -1,42 +1,40 @@
 package com.ludowica.goodlooksapi.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
-@Entity
-public class User {
+public class UserSignUp {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String name;
+
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String username;
+
+    @NotBlank
+    @Size(max = 60)
+    @Email
     private String email;
+
+    private Set<String> role;
+
+    @NotBlank
+    @Size(min = 6, max = 40)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
-
-    public User() {
+    public UserSignUp() {
     }
 
-    public User(String name, String username, String email, String password) {
+    public UserSignUp(@NotBlank @Size(min = 3, max = 50) String name, @NotBlank @Size(min = 3, max = 50) String username, @NotBlank @Size(max = 60) @Email String email, Set<String> role, @NotBlank @Size(min = 6, max = 40) String password) {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.role = role;
         this.password = password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -71,12 +69,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<String> getRole() {
+        return this.role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Set<String> role) {
+        this.role = role;
     }
-
 }

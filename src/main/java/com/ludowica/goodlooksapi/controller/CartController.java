@@ -36,16 +36,7 @@ public class CartController {
     @GetMapping("/fetch/{userId}")
     public ResponseEntity<?> fetchCart(@PathVariable int userId) {
 
-        Optional<Cart> shoppingCartOptional = cartRepo.findByUserId(userId);
-        Cart shoppingCart = null;
-
-        if (shoppingCartOptional.isPresent()) {
-            shoppingCart = shoppingCartOptional.get();
-        } else {
-            shoppingCart = new Cart(userId);
-            shoppingCart = cartRepo.save(shoppingCart);
-        }
-
+        Cart shoppingCart = cartService.retrieveCart(userId);
         return new ResponseEntity<>(shoppingCart, HttpStatus.OK);
     }
 

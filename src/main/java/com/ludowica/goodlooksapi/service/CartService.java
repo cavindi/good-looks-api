@@ -7,6 +7,7 @@ import com.ludowica.goodlooksapi.model.Product;
 import com.ludowica.goodlooksapi.repository.CartProductRepo;
 import com.ludowica.goodlooksapi.repository.CartRepo;
 import com.ludowica.goodlooksapi.repository.ProductRepo;
+import com.ludowica.goodlooksapi.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,10 @@ public class CartService {
 
     @Autowired
     CartProductRepo cartProductRepo;
+
+    @Autowired
+    UserRepo userRepo;
+
 
     private CartProduct cartProduct = null;
 
@@ -80,5 +85,27 @@ public class CartService {
         cartProductRepo.deleteById(this.cartProduct.getId());
 
         return new ResponseEntity<>(this.cartProduct, HttpStatus.OK);
+    }
+
+    public Cart retrieveCart(int userId) {
+
+        Optional<Cart> shoppingCartOptional = cartRepo.findByUserIdAndStatus(userId, "ongoing");
+        Cart shoppingCart = null;
+
+        if (shoppingCartOptional.isPresent()) {
+            shoppingCart = shoppingCartOptional.get();
+        } else {
+
+            userRepo
+                    .findById(userId)
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+
+            shoppingCart = new Cart();
+            shoppingCart.setStatus("ongoing");
+            shoppingCart.setUserId(userId);
+            cartRepo.save(shoppingCart);
+        }
+
+        return shoppingCart;
     }
 }
