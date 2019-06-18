@@ -35,15 +35,6 @@ public class UserController {
         return userRepo.save(user);
     }
 
-/*    @PutMapping
-    public boolean updateUserById(@RequestBody User user) {
-        if (userRepo.existsById(user.getUserId())) {
-            userRepo.save(user);
-            return true;
-        }
-        return false;
-    }*/
-
     @DeleteMapping("/{id}")
     public boolean removeUser(@PathVariable int id) {
         if (userRepo.existsById(id)) {
